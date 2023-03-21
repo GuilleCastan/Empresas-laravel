@@ -1,0 +1,25 @@
+version: "5.9"
+services:
+  mysql:
+    image: mysql
+    container_name: bd_mysql_guillermo_laravel_empresas
+    ports:
+      - 23306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_USER=guillermo
+      - MYSQL_PASSWORD=guillermo
+      - MYSQL_DATABASE=empresas
+      - MYSQL_ROOT_PASSWORD=root
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8083:80
+    depends_on:
+      - mysql
+    environment:
+      - PMA_HOST=mysql
+      - PMA_ARBITRARY=1
+
+
